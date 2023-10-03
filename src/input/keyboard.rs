@@ -16,15 +16,11 @@ pub fn wait_for_character(character_to_check: char) {
 
 pub fn wait_for_enter() {
   loop {
-    let keyboard_stroke: char;
 
-    keyboard_stroke = Term::stdout()
-                        .read_char()
-                        .unwrap();
+    let keyboard_stroke: char = Term::stdout()
+                                  .read_char()
+                                  .unwrap();
 
-    match keyboard_stroke {
-      '\n' => break,
-      _    => ()
-    }
+    if keyboard_stroke == '\n' { break }
   }
 }

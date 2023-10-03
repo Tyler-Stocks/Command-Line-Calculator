@@ -1,5 +1,4 @@
 pub mod macros;
-pub mod console_utility;
 pub mod input;
 pub mod application;
 pub mod enums;
