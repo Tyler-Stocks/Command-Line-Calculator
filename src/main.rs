@@ -4,10 +4,11 @@ pub mod application;
 pub mod enums;
 pub mod console_utility;
 
-use crate::application::main_loop::main_loop;
-use crate::application::start::start;
+use crate::application::{background::*, start::*, main_loop::*};
+
 
 fn main() {
+   spawn_termination_thread();
    start();
    main_loop();
 }

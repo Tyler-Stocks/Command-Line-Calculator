@@ -6,6 +6,7 @@ pub fn main_loop() {
     let mut first_number:  f64;
     let mut second_number: f64;
 
+
     loop {
         match get_operation_type() {
             OperationType::ARITHMATIC => {

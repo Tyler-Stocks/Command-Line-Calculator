@@ -29,3 +29,16 @@ pub fn wait_for_enter() {
     }
   }
 }
+
+pub fn check_for_character(char_to_check: char) -> bool {
+  let mut keyboard_input_character: char;
+  loop {
+    keyboard_input_character = Term::stdout()
+                                 .read_char()
+                                 .unwrap();
+
+    if keyboard_input_character == char_to_check {
+      return true;
+    }
+  }
+}
