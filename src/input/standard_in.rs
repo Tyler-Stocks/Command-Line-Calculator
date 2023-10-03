@@ -24,7 +24,7 @@ pub fn get_input(message: &str) -> String {
 }
 
 
-pub fn get_i128(message: &str) -> i128 {
+pub fn get_f64(message: &str) -> f64 {
     let mut user_input: String;
 
     loop {
@@ -37,7 +37,7 @@ pub fn get_i128(message: &str) -> i128 {
             },
             Err(_error) => {
                 clear_console();
-                println!("Failed to convert input into i128.");
+                println!("Failed to convert input into f64.");
                 wait_for_enter();
                 clear_console();
             },
