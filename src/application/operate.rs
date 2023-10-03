@@ -4,7 +4,7 @@ use crate::input::standard_in::get_input;
 use crate::input::keyboard::wait_for_enter;
 use crate::console_utility::clear::clear_console;
 
-pub fn perform_arithmatic_operation(first_number: i128, second_number: i128) {
+pub fn perform_arithmatic_operation(first_number: f64, second_number: f64) {
     let mut operation: String;
     loop {
         operation = get_input("Please enter your operation");
@@ -48,7 +48,7 @@ pub fn perform_arithmatic_operation(first_number: i128, second_number: i128) {
     }
 }
 
-pub fn perform_trig_operation(first_number: i128) {
+pub fn perform_trig_operation(first_number: f64) {
     let mut operation: String;
 
     loop {

@@ -1,43 +1,43 @@
 #[macro_export]
 macro_rules! arithmatic {
     ($first:tt + $second:tt) => {
-        println!("{} + {} = {}", $first, $second, $first as f64 + $second as f64)
+        println!("{} + {} = {}", $first, $second, $first + $second)
     };
     ($first:tt - $second:tt) => {
-        println!("{} - {} = {}", $first, $second, $first as f64 - $second as f64)
+        println!("{} - {} = {}", $first, $second, $first - $second)
     };
     ($first:tt * $second:tt) => {
-        println!("{} * {} = {}", $first, $second, $first as f64 * $second as f64)
+        println!("{} * {} = {}", $first, $second, $first * $second)
     };
     ($first:tt / $second:tt) => {
-        println!("{} / {} = {}", $first, $second, $first as f64 / $second as f64)
+        println!("{} / {} = {}", $first, $second, $first / $second)
     };
     ($base:tt ** $power:tt) => {
-        println!("{} ^ {} = {}", $base, $power, i128::pow($base as i128, $power as u32))
+        println!("{} ^ {} = {}", $base, $power, f64::powf($base, $power))
     };
     ($nth:tt root $number:tt) => {
-        println!("The {}th root of {} is {}", $nth, $number, i128::pow($nth, (1 / $number) as u32))
+        println!("The {}th root of {} is {}", $nth, $number, f64::powf($number, 1.0 / $nth))
     };
 }
 
 #[macro_export]
 macro_rules! trig {
     (sin $number:tt) => {
-        println!("Sin({}) = {}", $number, f64::sin($number as f64))
+        println!("Sin({}) = {}", $number, f64::sin($number))
     };
     (cos $number:tt) => {
-        println!("Cos({}) = {}", $number, f64::cos($number as f64))
+        println!("Cos({}) = {}", $number, f64::cos($number))
     };
     (tan $number:tt) => {
-        println!("Tan({}) = {}", $number, f64::tan($number as f64))
+        println!("Tan({}) = {}", $number, f64::tan($number))
     };
     (asin $number:tt) => {
-        println!("Asin({}) = {}", $number, f64::asin($number as f64))
+        println!("Asin({}) = {}", $number, f64::asin($number))
     };
     (acos $number:tt) => {
-        println!("Acos({}) = {}", $number, f64::acos($number as f64))
+        println!("Acos({}) = {}", $number, f64::acos($number))
     };
     (atan $number:tt) => {
-        println!("Atan({}_ = {}", $number, f64::atan($number as f64))
+        println!("Atan({}_ = {}", $number, f64::atan($number))
     };
 }
