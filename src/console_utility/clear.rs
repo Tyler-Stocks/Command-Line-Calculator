@@ -1,3 +1,7 @@
+use clearscreen::ClearScreen;
+
 pub fn clear_console() {
-    std::process::Command::new("cls").status().unwrap();
+    ClearScreen::default()
+                .clear()
+                .expect("Failed to clear the terminal.")
 }

@@ -12,7 +12,7 @@ macro_rules! arithmatic {
     ($first:tt / $second:tt) => {
         println!("{} / {} = {}", $first, $second, $first / $second)
     };
-    ($base:tt ** $power:tt) => {
+    ($base:tt ^ $power:tt) => {
         println!("{} ^ {} = {}", $base, $power, f64::powf($base, $power))
     };
     ($nth:tt root $number:tt) => {

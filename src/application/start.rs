@@ -1,29 +1,24 @@
 use console::Term;
-use clearscreen::ClearScreen;
 
 use crate::input::keyboard::wait_for_enter;
+use crate::console_utility::clear::clear_console;
 
 pub fn start() {
-    // Starting logic for the app.
+    // Logic performed before the main application loop.
 
-    let mut keyboard_stroke: char;
+    clear_console();
 
     loop {
-        ClearScreen::default()
-            .clear()
-            .expect("Failed to clear screen");
+
         println!("Press 's' to start the calculator.");
         println!("Press 'h' for help.");
         println!("Press 'q' to quit.");
 
-        keyboard_stroke = Term::stdout().read_char().unwrap();
 
-        match keyboard_stroke {
+        match Term::stdout().read_char().unwrap() {
             's' => break,
             'h' => {
-                ClearScreen::default()
-                    .clear()
-                    .expect("Failed to clear screen");
+                clear_console();
                 println!(
                     r#"
 Hello, this is a calculator that supports the following operations:
@@ -41,8 +36,5 @@ Press Enter to continue."#
             'q' => std::process::exit(1),
             _ => (),
         }
-        ClearScreen::default()
-            .clear()
-            .expect("Failed to clear screen");
     }
 }

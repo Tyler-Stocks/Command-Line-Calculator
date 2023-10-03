@@ -1,5 +1,7 @@
 use console::Term;
 
+use crate::console_utility::clear::clear_console;
+
 pub fn wait_for_character(character_to_check: char) {
   loop {
     let keyboard_stroke = Term::stdout()
@@ -21,6 +23,9 @@ pub fn wait_for_enter() {
                                   .read_char()
                                   .unwrap();
 
-    if keyboard_stroke == '\n' { break }
+    if keyboard_stroke == '\n' {
+      clear_console();
+      break;
+    }
   }
 }
