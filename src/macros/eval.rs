@@ -52,3 +52,20 @@ macro_rules! trig {
         println!("Atan({}_ = {}", $number, f64::atan($number))
     };
 }
+
+
+#[macro_export]
+macro_rules! stats {
+    (average $numbers:tt) => {
+        println!("The average is {}",
+        crate::math::statistical_operations::average($numbers))
+    };
+    (min $numbers:tt) => {
+        println!("The minmum value is {}",
+        crate::math::statistical_operations::min($numbers))
+    };
+    (max $numbers:tt) => {
+        println!("The maximum value is {}",
+        crate::math::statistical_operations::max($numbers))
+    }
+}
