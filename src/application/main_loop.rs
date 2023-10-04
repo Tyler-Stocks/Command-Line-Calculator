@@ -2,10 +2,11 @@ use crate::application::operate::{perform_arithmatic_operation, perform_trig_ope
 use crate::enums::operation_types::OperationType;
 use crate::input::standard_in::{get_f64, get_operation_type};
 
-pub fn main_loop() {
+
+/// Main application loop, does not return, may panic.
+pub fn main_loop() -> ! {
     let mut first_number:  f64;
     let mut second_number: f64;
-
 
     loop {
         match get_operation_type() {

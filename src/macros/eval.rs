@@ -1,3 +1,8 @@
+/// Performs an arithmatic operation on two numbers
+///
+/// The syntax is as follows
+///
+///     arithmatic!(Number Operation Number)
 #[macro_export]
 macro_rules! arithmatic {
     ($first:tt + $second:tt) => {
@@ -20,6 +25,12 @@ macro_rules! arithmatic {
     };
 }
 
+
+/// Performs a trig operation on a number.
+///
+/// The general syntax is as follows:
+///
+///     trig!(Operation Number)
 #[macro_export]
 macro_rules! trig {
     (sin $number:tt) => {

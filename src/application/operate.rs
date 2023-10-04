@@ -2,7 +2,10 @@ use crate::{arithmatic, trig};
 
 use crate::input::{keyboard::wait_for_enter, standard_in::get_input};
 
-pub fn perform_arithmatic_operation(first_number: f64, second_number: f64) {
+
+/// Gets the user to input an arithmatic operation.
+/// Performs the operation on the two supplied numbers.
+pub fn perform_arithmatic_operation(first_number: f64, second_number: f64) -> () {
     loop {
         match get_input("Please enter your operation").as_str() {
             "addition" => {
@@ -42,6 +45,9 @@ pub fn perform_arithmatic_operation(first_number: f64, second_number: f64) {
     }
 }
 
+
+/// Gets the user to input a trigonometric operation.
+/// Then performs the operation on the supplied number.
 pub fn perform_trig_operation(first_number: f64) {
     loop {
         match get_input("Please enter your operation.").as_str() {
