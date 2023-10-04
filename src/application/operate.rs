@@ -1,46 +1,35 @@
-use crate::{arithmatic, trig};
+use crate::{arithmatic, trig, stats};
 
 use crate::input::{keyboard::wait_for_enter, standard_in::get_input};
-
+use crate::enums::arithmatic_operations::ArithmaticOperation;
 
 /// Gets the user to input an arithmatic operation.
 /// Performs the operation on the two supplied numbers.
-pub fn perform_arithmatic_operation(first_number: f64, second_number: f64) -> () {
-    loop {
-        match get_input("Please enter your operation").as_str() {
-            "addition" => {
-                arithmatic!(first_number + second_number);
-                wait_for_enter();
-                break;
-            },
-            "subtraction" => {
-                arithmatic!(first_number - second_number);
-                wait_for_enter();
-                break;
-            },
-            "multiplication" => {
-                arithmatic!(first_number * second_number);
-                break;
-            },
-            "division" => {
-                arithmatic!(first_number / second_number);
-                wait_for_enter();
-                break;
-            },
-            "power" => {
-                arithmatic!(first_number ^ second_number);
-                wait_for_enter();
-                break;
-            },
-            "root" => {
-                arithmatic!(first_number root second_number);
-                wait_for_enter();
-                break;
-            },
-            _ => {
-                println!("The operation you entered is not supported.");
-                wait_for_enter();
-            }
+pub fn perform_arithmatic_operation(first_number: f64, second_number: f64, operation: ArithmaticOperation) -> () {
+    match operation {
+        ArithmaticOperation::ADDITION       => {
+            arithmatic!(first_number + second_number);
+            wait_for_enter();
+        },
+        ArithmaticOperation::SUBTRACTION    => {
+            arithmatic!(first_number - second_number);
+            wait_for_enter();
+        },
+        ArithmaticOperation::MULTIPLICATION => {
+            arithmatic!(first_number * second_number);
+            wait_for_enter();
+        },
+        ArithmaticOperation::DIVISION       => {
+            arithmatic!(first_number / second_number);
+            wait_for_enter();
+        },
+        ArithmaticOperation::EXPONENT       => {
+            arithmatic!(first_number ^ second_number);
+            wait_for_enter();
+        },
+        ArithmaticOperation::ROOT           => {
+            arithmatic!(first_number root second_number);
+            wait_for_enter()
         }
     }
 }
@@ -84,7 +73,39 @@ pub fn perform_trig_operation(first_number: f64) {
             _ => {
                 println!("Operation not supported, please input a valid operation.");
                 wait_for_enter();
-            }
+            },
+        }
+    }
+}
+
+
+/// Gets the user to input a statistical operation.
+/// Then performs the opeation on the supplied list of numbers.
+pub fn perform_statistical_operation(list_of_numbers: Vec<f64>) {
+    let mut numbers: Vec<f64>;
+    let error_message: &str =
+    r#"The statistical operation that you provided is not currently supported.
+       The following operations are currently supported:
+       1. Average
+       2. Min
+       3. Max
+
+       To quit please enter q the next time you are prompted to input.
+       To go back please enter b the next time you are prompted to input.
+    "#;
+
+    loop {
+        numbers = list_of_numbers.clone();
+        match get_input("Please input the operation you would like to perform").as_str() {
+            "average" => stats!(average numbers),
+            "min"     => stats!(min numbers),
+            "max"     => stats!(max numbers),
+            "b"       => break,
+            "q"       => std::process::exit(0),
+            _         => {
+                println!("{}", error_message);
+                wait_for_enter();
+            },
         }
     }
 }
