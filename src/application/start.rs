@@ -1,3 +1,5 @@
+use std::process::exit;
+
 use console::Term;
 
 use crate::input::keyboard::wait_for_enter;
@@ -5,7 +7,7 @@ use crate::console_utility::clear::clear_console;
 
 
 /// Prints the start message to standard out.
-pub fn display_start_message() -> () {
+pub fn display_start_message() {
     clear_console();
     println!("Press s to start the calculator.");
     println!("Press h for help.");
@@ -14,7 +16,7 @@ pub fn display_start_message() -> () {
 
 
 /// Prints the help message to standard out.
-pub fn display_help_message() -> () {
+pub fn display_help_message() {
     clear_console();
     println!(r#"Hello, this is a calculator that supports the following operations:
 1. Addition        7.  Sin
@@ -28,16 +30,18 @@ To continue after an operation or an error, press enter."#);
 
 
 /// Starting logic, before the application loop.
+
 pub fn start() {
     loop {
         display_start_message();
 
         match Term::stdout().read_char().unwrap() {
-            's' => break,
+            's' => return,
             'h' => {
                 display_help_message();
                 wait_for_enter();
             },
+            'q' => exit(0),
             _ => (),
         }
     }

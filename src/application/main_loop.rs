@@ -27,7 +27,7 @@ pub fn main_loop() -> ! {
             }
             OperationType::STATISTICAL => {
                 numbers = get_f64s("Please enter your numbers, press f to finish.");
-                perform_statistical_operation(numbers);
+                perform_statistical_operation(&numbers);
             },
         }
     }

@@ -36,48 +36,26 @@ pub fn get_input(message: &str) -> String {
     }
 }
 
+
 /// Gets a list of inputs, and returns them as a vector of Strings.
 ///
 /// Prompts the user to enter f when they are finishde.
 ///
 /// This function will never panic, and will always return.
 pub fn get_inputs(message: &str) -> Vec<String> {
-    let mut user_input_result: Result<usize, std::io::Error>;
-    let mut user_input:        String = String::new();
-    let mut user_input_vec:    Vec<String> = vec![];
+    let mut user_input:     String;
+    let mut user_input_vec: Vec<String> = vec![];
 
 
-        loop {
-            println!("{}", message);
+    loop {
+        user_input = get_input(message);
 
-            user_input_result = std::io::stdin().read_line(&mut user_input);
+        if user_input == "f" { break; }
 
-            match user_input_result {
-                Ok(_value) => {
-                    clear_console();
-                },
-                Err(error)  => {
-                    clear_console();
-                    println!("Failed to read input due to {}", error);
-                }
-            }
+        user_input_vec.push(user_input)
+    }
 
-            if user_input == "q" { std::process::exit(0); }
-
-            if user_input == "f" {
-
-                if user_input_vec.len() < 2 {
-                    println!("Must have at least two numbers.");
-                    wait_for_enter();
-                }
-
-                return user_input_vec
-            }
-
-            user_input_vec.push(user_input.clone());
-        }
-
-
+    return user_input_vec;
 
 }
 
@@ -116,7 +94,7 @@ pub fn get_f64s(message: &str) -> Vec<f64> {
         inputs_as_f64.push(temp_convert_value);
     }
 
-    return inputs_as_f64;
+    inputs_as_f64
 }
 
 

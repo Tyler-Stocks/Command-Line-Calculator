@@ -58,14 +58,14 @@ macro_rules! trig {
 macro_rules! stats {
     (average $numbers:tt) => {
         println!("The average is {}",
-        crate::math::statistical_operations::average($numbers))
+        $numbers.iter().sum::<f64>() / $numbers.len() as f64)
     };
     (min $numbers:tt) => {
         println!("The minmum value is {}",
-        crate::math::statistical_operations::min($numbers))
+        $numbers.iter().cloned().fold(0./0., f64::min))
     };
     (max $numbers:tt) => {
         println!("The maximum value is {}",
-        crate::math::statistical_operations::max($numbers))
+        $numbers.iter().cloned().fold(0./0., f64::max))
     }
 }
