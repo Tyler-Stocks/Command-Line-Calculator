@@ -1,3 +1,5 @@
+use std::process::exit;
+
 use crate::{arithmatic, trig, stats};
 
 use crate::input::{keyboard::wait_for_enter, standard_in::get_input};
@@ -5,7 +7,7 @@ use crate::enums::arithmatic_operations::ArithmaticOperation;
 
 /// Gets the user to input an arithmatic operation.
 /// Performs the operation on the two supplied numbers.
-pub fn perform_arithmatic_operation(first_number: f64, second_number: f64, operation: ArithmaticOperation) -> () {
+pub fn perform_arithmatic_operation(first_number: f64, second_number: f64, operation: ArithmaticOperation) {
     match operation {
         ArithmaticOperation::ADDITION       => {
             arithmatic!(first_number + second_number);
@@ -70,6 +72,8 @@ pub fn perform_trig_operation(first_number: f64) {
                 wait_for_enter();
                 break;
             },
+            "b" => exit(0),
+            "q" => break,
             _ => {
                 println!("Operation not supported, please input a valid operation.");
                 wait_for_enter();
@@ -81,8 +85,7 @@ pub fn perform_trig_operation(first_number: f64) {
 
 /// Gets the user to input a statistical operation.
 /// Then performs the opeation on the supplied list of numbers.
-pub fn perform_statistical_operation(list_of_numbers: Vec<f64>) {
-    let mut numbers: Vec<f64>;
+pub fn perform_statistical_operation(numbers: &Vec<f64>) {
     let error_message: &str =
     r#"The statistical operation that you provided is not currently supported.
        The following operations are currently supported:
@@ -95,13 +98,21 @@ pub fn perform_statistical_operation(list_of_numbers: Vec<f64>) {
     "#;
 
     loop {
-        numbers = list_of_numbers.clone();
         match get_input("Please input the operation you would like to perform").as_str() {
-            "average" => stats!(average numbers),
-            "min"     => stats!(min numbers),
-            "max"     => stats!(max numbers),
+            "average" => {
+                stats!(average numbers);
+                wait_for_enter();
+            },
+            "min"     => {
+                stats!(min numbers);
+                wait_for_enter();
+            },
+            "max"     => {
+                stats!(max numbers);
+                wait_for_enter();
+            },
             "b"       => break,
-            "q"       => std::process::exit(0),
+            "q"       => exit(0),
             _         => {
                 println!("{}", error_message);
                 wait_for_enter();
